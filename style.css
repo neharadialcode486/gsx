@@ -130,4 +130,81 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 35px;
+}
+.sgk_properties_card {
+  display: flex;
+  max-width: 1170px;
+  margin: auto;
+  border-radius: 22px;
+  overflow: hidden;
+}
+.gsk_card_content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-top: 1px solid #b9bbbc;
+  border-bottom: 1px solid #b9bbbc;
+  border-right: 1px solid #b9bbbc;
+  width: 100%;
+  border-radius: 0px 22px 22px 0px;
+}
+.gsk_property_card_heading {
+  color: var(--e-global-color-text);
+  font-weight: var(--e-global-typography-c166794-font-weight);
+  font-size: var(--e-global-typography-c166794-font-size);
+  line-height: var(--e-global-typography-c166794-line-height);
+  margin: 0;
+}
+.gsk_property_card_image {
+  position: relative;
+  max-width: 470px;
+  width: 100%;
+}
+.gsk_property_card_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gsk_amount {
+  font-size: var(--e-global-typography-fe57479-font-size);
+  line-height: var(--e-global-typography-fe57479-line-height);
+  font-weight: var(--e-global-typography-fe57479-font-weight);
+  color: var(--e-global-color-text);
+  margin-bottom: 0;
+  margin-top: 5px;
+}
+.gsk_amount span {
+  font-size: 14px;
+  vertical-align: middle;
+  font-weight: 400;
+}
+.gsk_property_card_name {
+  font-size: var(--e-global-typography-af45001-font-size);
+  line-height: var(--e-global-typography-af45001-line-height);
+  color: var(--e-global-color-text);
+  font-weight: var(--e-global-typography-af45001-font-weight);
+  margin: 0;
+}
+.gsk_property_location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: none;
+  line-height: 1.5em;
+  color: #6e7070;
+}
+.gsk_property_desc {
+  font-size: var(--e-global-typography-f81d4b8-font-size);
+  line-height: var(--e-global-typography-f81d4b8-line-height);
+  word-spacing: var(--e-global-typography-f81d4b8-word-spacing);
+  color: var(--e-global-color-text);
+  font-weight: var(--e-global-typography-f81d4b8-font-weight);
+  font-style: var(--e-global-typography-f81d4b8-font-style);
+  text-decoration: var(--e-global-typography-f81d4b8-text-decoration);
+  margin: 0;
 }
