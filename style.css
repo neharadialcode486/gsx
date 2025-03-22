@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 :root {
   --e-global-color-primary: #0564ff;
   --e-global-color-secondary: #484848;
@@ -81,4 +83,51 @@
   --e-global-typography-3ae4dcd-font-size: 20px;
   --e-global-typography-3ae4dcd-font-weight: 400;
   --e-global-typography-3ae4dcd-line-height: 1.7rem;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.gsk_container {
+  max-width: 1600px;
+  margin: auto;
+}
+.gsk_route {
+  font-size: var(--e-global-typography-c166794-font-size);
+  line-height: var(--e-global-typography-c166794-line-height);
+  display: flex;
+  gap: 10px;
+}
+.gsk_heading {
+  font-size: var(--e-global-typography-1ef8208-font-size);
+  font-weight: var(--e-global-typography-6de2bf4-font-weight);
+  color: var(--e-global-color-text);
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+.gsk_map_button {
+  text-decoration: none;
+  display: inline-block;
+  background-color: var(--e-global-color-accent);
+  font-size: 17px;
+  font-weight: var(--e-global-typography-fe57479-font-weight);
+  color: var(--e-global-color-cab9338);
+  border-radius: 8px 8px 8px 8px;
+  padding: 14px 24px 14px 24px;
+}
+.gsk_properties {
+  color: var(--e-global-color-text);
+  font-weight: var(--e-global-typography-f81d4b8-font-weight);
+  font-style: var(--e-global-typography-f81d4b8-font-style);
+  text-decoration: var(--e-global-typography-f81d4b8-text-decoration);
+  font-size: var(--e-global-typography-f81d4b8-font-size);
+  line-height: var(--e-global-typography-f81d4b8-line-height);
+  word-spacing: var(--e-global-typography-f81d4b8-word-spacing);
+}
+.gsk_button_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
