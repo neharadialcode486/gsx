@@ -308,7 +308,11 @@ body {
   font-weight: 600;
   margin: 0;
 }
-
+#gsk_property_list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 @media (max-width: 1230px) {
   .sgk_properties_card {
     flex-direction: column;
@@ -316,6 +320,7 @@ body {
   }
   .gsk_property_card_image {
     max-width: 100%;
+    height: 350px;
   }
   .gsk_card_content {
     width: auto;
@@ -329,5 +334,22 @@ body {
     flex-direction: column;
     align-items: start;
     gap: 15px;
+  }
+  #gsk_property_list {
+    flex-direction: row;
+    gap: 20px;
+  }
+}
+@media (max-width: 1100px) {
+  .sgk_properties_card {
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  #gsk_property_list {
+    flex-wrap: wrap;
+  }
+  .gsk_heading {
+    font-size: 30px;
   }
 }
