@@ -176,3 +176,42 @@ function displayProperties(properties) {
 
 // Load properties on page load
 fetchProperties();
+
+// CUSTOM SECLECT ===============================================================
+function initCustomSelect(selectId) {
+  const selectBox = document.getElementById(`${selectId}Box`);
+  const optionsContainer = document.getElementById(`${selectId}Options`);
+  const selectedOption = document.getElementById(`${selectId}Selected`);
+  const arrow = document.getElementById(`${selectId}Arrow`);
+
+  // Toggle dropdown
+  selectBox.addEventListener("click", () => {
+    optionsContainer.classList.toggle("gsk-show");
+    arrow.classList.toggle("gsk-rotate");
+  });
+
+  // Handle option click
+  document
+    .querySelectorAll(`#${selectId}Options .gsk-option`)
+    .forEach((option) => {
+      option.addEventListener("click", (e) => {
+        selectedOption.innerText = e.target.innerText;
+        optionsContainer.classList.remove("gsk-show");
+        arrow.classList.remove("gsk-rotate");
+      });
+    });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!selectBox.contains(e.target)) {
+      optionsContainer.classList.remove("gsk-show");
+      arrow.classList.remove("gsk-rotate");
+    }
+  });
+}
+
+// Initialize all 4 selects
+initCustomSelect("gskLocation");
+initCustomSelect("gskPropertyType");
+initCustomSelect("gskSize");
+initCustomSelect("gskPrice");

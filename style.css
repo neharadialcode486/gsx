@@ -313,6 +313,96 @@ body {
   flex-direction: column;
   gap: 20px;
 }
+/* CUSTOM SELECT ==========================================================*/
+.gsk-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.gsk-form-group {
+  position: relative;
+  width: 100%;
+}
+
+.gsk-label {
+  font-family: var(--e-global-typography-b7e45c4-font-family), Sans-serif;
+  font-size: var(--e-global-typography-b7e45c4-font-size);
+  font-weight: var(--e-global-typography-b7e45c4-font-weight);
+  line-height: var(--e-global-typography-b7e45c4-line-height);
+  color: var(--e-global-color-text);
+  padding: 0px 0px 8px 0px;
+  display: inline-block;
+}
+
+.gsk-custom-select {
+  position: relative;
+}
+
+.gsk-select-box {
+  font-family: var(--e-global-typography-f81d4b8-font-family), Sans-serif;
+  font-size: var(--e-global-typography-f81d4b8-font-size);
+  font-weight: var(--e-global-typography-f81d4b8-font-weight);
+  font-style: var(--e-global-typography-f81d4b8-font-style);
+  text-decoration: var(--e-global-typography-f81d4b8-text-decoration);
+  line-height: var(--e-global-typography-f81d4b8-line-height);
+  word-spacing: var(--e-global-typography-f81d4b8-word-spacing);
+  color: var(--e-global-color-text);
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-color: #ced4da;
+  border-radius: 6px 6px 6px 6px;
+  -webkit-appearance: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.gsk-select-box span {
+  font-size: 16px;
+  color: #333;
+}
+
+.gsk-arrow {
+  font-size: 14px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.gsk-options-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-top: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: none;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.gsk-option {
+  padding: 7px 15px;
+  cursor: pointer;
+}
+
+.gsk-option:hover {
+  background-color: var(--e-global-color-3a05ba6);
+  color: white;
+}
+
+.gsk-show {
+  display: block;
+}
+
+.gsk-rotate {
+  transform: rotate(180deg);
+}
+/* MEDIA ==========================================================*/
 @media (max-width: 1230px) {
   .sgk_properties_card {
     flex-direction: column;
