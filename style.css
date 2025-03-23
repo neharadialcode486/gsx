@@ -93,6 +93,9 @@ body {
 .gsk_container {
   max-width: 1600px;
   margin: auto;
+  padding: 0 20px;
+  display: flex;
+  gap: 30px;
 }
 .gsk_route {
   font-size: var(--e-global-typography-c166794-font-size);
@@ -138,6 +141,10 @@ body {
   margin: auto;
   border-radius: 22px;
   overflow: hidden;
+  transition: all 300ms ease-in-out;
+}
+.sgk_properties_card:hover {
+  transform: translateY(-10px);
 }
 .gsk_card_content {
   padding: 20px;
@@ -159,7 +166,7 @@ body {
 }
 .gsk_property_card_image {
   position: relative;
-  max-width: 470px;
+  max-width: 40%;
   width: 100%;
 }
 .gsk_property_card_image img {
@@ -207,4 +214,120 @@ body {
   font-style: var(--e-global-typography-f81d4b8-font-style);
   text-decoration: var(--e-global-typography-f81d4b8-text-decoration);
   margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gsk_profile_and_buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.gsk_profile_container {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.gsk_profile_container img {
+  height: 56px;
+  width: 56px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+.gsk_profile_name {
+  font-size: var(--e-global-typography-af45001-font-size);
+  line-height: var(--e-global-typography-af45001-line-height);
+  color: var(--e-global-color-text);
+  font-weight: var(--e-global-typography-af45001-font-weight);
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin: 0;
+}
+.gsk_profile_post {
+  font-size: var(--e-global-typography-e55c8b4-font-size);
+  line-height: var(--e-global-typography-e55c8b4-line-height);
+  color: var(--e-global-color-secondary);
+  font-weight: var(--e-global-typography-e55c8b4-font-weight);
+  margin-bottom: 0;
+  margin-top: 0px;
+}
+.gsk_view_details_btn {
+  background-color: var(--e-global-color-951a74d);
+  font-family: "Inter", Sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2rem;
+  padding: 12px 14px 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  color: var(--e-global-color-cab9338);
+  border-radius: 8px 8px 8px 8px;
+}
+.gsk_profile_btn {
+  background-color: var(--e-global-color-cab9338);
+  font-family: "Inter", Sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2rem;
+  fill: #002a52;
+  color: #002a52;
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-color: #002a52;
+  padding: 12px 14px 12px 14px;
+  border-radius: 8px 8px 8px 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+}
+.gsk_btn_container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.gsk_absolute_text {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.gsk_absolute_text p {
+  padding: 4px 8px !important;
+  display: block !important;
+  border-radius: 4px;
+  background: var(--e-global-color-3a05ba6);
+  color: var(--e-global-color-cab9338);
+  font-weight: 600;
+  margin: 0;
+}
+
+@media (max-width: 1230px) {
+  .sgk_properties_card {
+    flex-direction: column;
+    max-width: 365px;
+  }
+  .gsk_property_card_image {
+    max-width: 100%;
+  }
+  .gsk_card_content {
+    width: auto;
+    border-top: 0px solid #b9bbbc;
+    border-bottom: 1px solid #b9bbbc;
+    border-right: 1px solid #b9bbbc;
+    border-left: 1px solid #b9bbbc;
+    border-radius: 0px 0 22px 22px;
+  }
+  .gsk_profile_and_buttons {
+    flex-direction: column;
+    align-items: start;
+    gap: 15px;
+  }
 }
