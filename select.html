@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Selects</title>
+  </head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .gsk-form-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      width: 600px;
+    }
+
+    .gsk-form-group {
+      position: relative;
+      width: 100%;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .gsk-custom-select {
+      position: relative;
+    }
+
+    .gsk-select-box {
+      background-color: #fff;
+      padding: 10px 15px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .gsk-select-box span {
+      font-size: 16px;
+      color: #333;
+    }
+
+    .gsk-arrow {
+      font-size: 14px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .gsk-options-container {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-top: none;
+      border-radius: 0 0 5px 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: none;
+      z-index: 10;
+    }
+
+    .gsk-option {
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .gsk-option:hover {
+      background-color: #f1f1f1;
+    }
+
+    .gsk-show {
+      display: block;
+    }
+
+    .gsk-rotate {
+      transform: rotate(180deg);
+    }
+  </style>
+  <body>
+    <div class="gsk-form-container">
+      <!-- Location Select -->
+      <div class="gsk-form-group">
+        <label for="gskLocationSelect">📍 Location</label>
+        <div class="gsk-custom-select" id="gskLocationSelect">
+          <div class="gsk-select-box" id="gskLocationBox">
+            <span id="gskLocationSelected">Select Location</span>
+            <div class="gsk-arrow" id="gskLocationArrow">&#9662;</div>
+          </div>
+          <div class="gsk-options-container" id="gskLocationOptions">
+            <div class="gsk-option" data-value="delhi">Delhi</div>
+            <div class="gsk-option" data-value="mumbai">Mumbai</div>
+            <div class="gsk-option" data-value="bangalore">Bangalore</div>
+            <div class="gsk-option" data-value="kolkata">Kolkata</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Property Type Select -->
+      <div class="gsk-form-group">
+        <label for="gskPropertyTypeSelect">🏡 Property Type</label>
+        <div class="gsk-custom-select" id="gskPropertyTypeSelect">
+          <div class="gsk-select-box" id="gskPropertyTypeBox">
+            <span id="gskPropertyTypeSelected">Select Property Type</span>
+            <div class="gsk-arrow" id="gskPropertyTypeArrow">&#9662;</div>
+          </div>
+          <div class="gsk-options-container" id="gskPropertyTypeOptions">
+            <div class="gsk-option" data-value="apartment">Apartment</div>
+            <div class="gsk-option" data-value="villa">Villa</div>
+            <div class="gsk-option" data-value="plot">Plot</div>
+            <div class="gsk-option" data-value="commercial">Commercial</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Size Select -->
+      <div class="gsk-form-group">
+        <label for="gskSizeSelect">📏 Size</label>
+        <div class="gsk-custom-select" id="gskSizeSelect">
+          <div class="gsk-select-box" id="gskSizeBox">
+            <span id="gskSizeSelected">Select Size</span>
+            <div class="gsk-arrow" id="gskSizeArrow">&#9662;</div>
+          </div>
+          <div class="gsk-options-container" id="gskSizeOptions">
+            <div class="gsk-option" data-value="500sqft">500 sqft</div>
+            <div class="gsk-option" data-value="1000sqft">1000 sqft</div>
+            <div class="gsk-option" data-value="1500sqft">1500 sqft</div>
+            <div class="gsk-option" data-value="2000sqft">2000 sqft</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Price Range Select -->
+      <div class="gsk-form-group">
+        <label for="gskPriceSelect">💰 Price Range</label>
+        <div class="gsk-custom-select" id="gskPriceSelect">
+          <div class="gsk-select-box" id="gskPriceBox">
+            <span id="gskPriceSelected">Select Price Range</span>
+            <div class="gsk-arrow" id="gskPriceArrow">&#9662;</div>
+          </div>
+          <div class="gsk-options-container" id="gskPriceOptions">
+            <div class="gsk-option" data-value="under50k">Under $50,000</div>
+            <div class="gsk-option" data-value="50kto100k">
+              $50,000 - $100,000
+            </div>
+            <div class="gsk-option" data-value="100kto200k">
+              $100,000 - $200,000
+            </div>
+            <div class="gsk-option" data-value="above200k">Above $200,000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Function to initialize custom select
+      function initCustomSelect(selectId) {
+        const selectBox = document.getElementById(`${selectId}Box`);
+        const optionsContainer = document.getElementById(`${selectId}Options`);
+        const selectedOption = document.getElementById(`${selectId}Selected`);
+        const arrow = document.getElementById(`${selectId}Arrow`);
+
+        // Toggle dropdown
+        selectBox.addEventListener("click", () => {
+          optionsContainer.classList.toggle("gsk-show");
+          arrow.classList.toggle("gsk-rotate");
+        });
+
+        // Handle option click
+        document
+          .querySelectorAll(`#${selectId}Options .gsk-option`)
+          .forEach((option) => {
+            option.addEventListener("click", (e) => {
+              selectedOption.innerText = e.target.innerText;
+              optionsContainer.classList.remove("gsk-show");
+              arrow.classList.remove("gsk-rotate");
+            });
+          });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", (e) => {
+          if (!selectBox.contains(e.target)) {
+            optionsContainer.classList.remove("gsk-show");
+            arrow.classList.remove("gsk-rotate");
+          }
+        });
+      }
+
+      // Initialize all 4 selects
+      initCustomSelect("gskLocation");
+      initCustomSelect("gskPropertyType");
+      initCustomSelect("gskSize");
+      initCustomSelect("gskPrice");
+    </script>
+  </body>
+</html>
