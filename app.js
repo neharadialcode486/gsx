@@ -36,8 +36,9 @@ async function fetchProperties() {
     const properties = await propertiesResponse.json();
     const propertyTypes = await propertyTypesResponse.json();
     const propertyTags = await propertyTagsResponse.json();
+    console.log(properties);
 
-    // Map properties with property types and tags
+    // Map properties with property types, tags, and media details
     const matchedProperties = await Promise.all(
       properties.map(async (property) => {
         // Match property type
@@ -51,7 +52,7 @@ async function fetchProperties() {
         );
 
         // Fetch manager details dynamically
-        const managerId = property.acf.manager[0].ID;
+        const managerId = property.acf.manager[0]?.ID;
         let managerDetails = {
           name: "N/A",
           verified: false,
@@ -68,13 +69,35 @@ async function fetchProperties() {
             console.warn(`Failed to load manager data for ID: ${managerId}`);
           }
         }
+
+        // Fetch media details dynamically
+        const aboutImageId = property.featured_media || null;
+        let mediaDetails = {
+          id: null,
+          source_url: "",
+        };
+
+        if (aboutImageId) {
+          const mediaApiUrl = `http://16.171.233.34/index.php/wp-json/wp/v2/media/${aboutImageId}?_fields=id,source_url`;
+          try {
+            const mediaResponse = await fetch(mediaApiUrl);
+            const mediaData = await mediaResponse.json();
+            mediaDetails.source_url =
+              mediaData.source_url || mediaDetails.source_url;
+          } catch (error) {
+            console.warn(`Failed to load media data for ID: ${aboutImageId}`);
+          }
+        }
+
         document.getElementById("total_properties").innerHTML = totalCount;
+
         // Return property with mapped details
         return {
           ...property,
           property_type_details: propertyTypeDetails || { name: "Unknown" },
           tag_details: tagDetails?.name || "No Tags",
           manager_details: managerDetails,
+          media_details: mediaDetails,
         };
       })
     );
@@ -98,7 +121,8 @@ function displayProperties(properties) {
         <div class="gsk_property_card_image">
           <img
             src="${
-              property.acf.about_image || "https://via.placeholder.com/150"
+              property.media_details.source_url ||
+              "https://via.placeholder.com/150"
             }"
             alt="property image"
           />
@@ -131,7 +155,6 @@ function displayProperties(properties) {
               />
               <div>
                 <p class="gsk_profile_name">
-                 
                   ${property.manager_details.name || "N/A"} ${
         property.manager_details.verified &&
         ` <svg

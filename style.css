@@ -289,7 +289,7 @@ body {
 .gsk_btn_container {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 }
 .gsk_absolute_text {
   display: flex;
@@ -469,6 +469,39 @@ body {
 .noUi-handle:after,
 .noUi-handle:before {
   display: none !important;
+}
+.gsk_red_btn {
+  font-family: "Inter", Sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2rem;
+  color: var(--e-global-color-cab9338);
+  background-color: var(--e-global-color-9b74273);
+  border-style: none;
+  padding: 12px 14px 12px 14px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 8px 8px 8px 8px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  cursor: pointer;
+}
+.gsk_clear_btn {
+  font-family: "Inter", Sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2rem;
+  color: var(--e-global-color-9b74273);
+  background-color: var(--e-global-color-cab9338);
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-color: var(--e-global-color-9b74273);
+  padding: 12px 14px 12px 14px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
 }
 /* MEDIA ==========================================================*/
 @media (max-width: 1230px) {
