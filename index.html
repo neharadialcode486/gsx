@@ -33,7 +33,7 @@
     <script>
       // API URL
       const apiUrl =
-        "http://16.171.233.34/index.php/wp-json/wp/v2/properties?acf_format=standard&per_page=2";
+        "http://16.171.233.34/index.php/wp-json/wp/v2/properties?acf_format=standard&per_page=99";
 
       // Fetch data from API
       async function fetchProperties() {
@@ -102,7 +102,7 @@
                     />
                     <div>
                     <p class="gsk_profile_name">
-            Andy C
+            ${property.acf.manager[0].post_title}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
