@@ -528,7 +528,8 @@ body {
   }
   #gsk_property_list {
     flex-direction: row;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
   }
 }
 @media (max-width: 1100px) {
@@ -542,5 +543,21 @@ body {
   }
   .gsk_heading {
     font-size: 30px;
+  }
+}
+@media (max-width: 768px) {
+  .sidebar_container {
+    display: none;
+  }
+  .sgk_properties_card {
+    max-width: 49%;
+  }
+}
+@media (max-width: 600px) {
+  .sidebar_container {
+    display: none;
+  }
+  .sgk_properties_card {
+    max-width: 100%;
   }
 }
