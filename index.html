@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css"
+    />
     <title>Document</title>
   </head>
   <body>
@@ -132,6 +136,36 @@
             </div>
           </div>
         </div>
+        <!-- RANGE -->
+        <label class="gsk-label gsk_mt_30"> Price</label>
+        <div id="gskRange"></div>
+        <!-- Input Group -->
+        <div class="gsk-input-group">
+          <div class="gsk-input-container">
+            <span>$</span>
+            <input
+              type="number"
+              id="gskMinInput"
+              min="0"
+              max="2500"
+              step="1000"
+              value="0"
+            />
+          </div>
+          <div class="gsk-input-container">
+            <span>$</span>
+            <input
+              type="number"
+              id="gskMaxInput"
+              min="0"
+              max="2500"
+              step="1000"
+              value="2,500"
+            />
+          </div>
+        </div>
+
+        <!-- Range Slider -->
       </div>
       <div>
         <div class="gsk_route">
@@ -156,6 +190,8 @@
         </div>
       </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+
     <script src="./app.js"></script>
   </body>
 </html>

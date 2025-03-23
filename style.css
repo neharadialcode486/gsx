@@ -402,6 +402,74 @@ body {
 .gsk-rotate {
   transform: rotate(180deg);
 }
+
+/* RANGE ==========================================================*/
+
+.gsk-input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.gsk_mt_30 {
+  margin-top: 30px;
+}
+.gsk-input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 8px 10px;
+  width: 100%;
+  font-family: var(--e-global-typography-c166794-font-family), Sans-serif;
+  font-size: var(--e-global-typography-c166794-font-size);
+  font-weight: var(--e-global-typography-c166794-font-weight);
+  color: var(--e-global-color-secondary);
+}
+
+.gsk-input-container span {
+  color: gray;
+}
+
+.gsk-input-container input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-family: var(--e-global-typography-c166794-font-family), Sans-serif;
+  font-size: var(--e-global-typography-c166794-font-size);
+  font-weight: var(--e-global-typography-c166794-font-weight);
+  color: var(--e-global-color-secondary);
+  padding-left: 10px;
+  display: inline-block;
+}
+
+#gskRange {
+  margin-top: 10px;
+}
+
+/* Custom Styling */
+.noUi-connect {
+  background-color: var(--e-global-color-3a05ba6) !important;
+}
+.noUi-horizontal {
+  height: 10px !important;
+}
+.noUi-handle {
+  border-color: var(--e-global-color-3a05ba6) !important;
+  background-color: var(--e-global-color-3a05ba6) !important;
+  border-radius: 50% !important;
+  height: 15px !important;
+  width: 15px !important;
+  margin-top: 2px;
+  margin-right: 5px;
+}
+.noUi-touch-area {
+  border-radius: 50% !important;
+}
+.noUi-handle:after,
+.noUi-handle:before {
+  display: none !important;
+}
 /* MEDIA ==========================================================*/
 @media (max-width: 1230px) {
   .sgk_properties_card {

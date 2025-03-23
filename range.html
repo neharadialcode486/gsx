@@ -28,139 +28,16 @@
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
-
-      .gsk-label {
-        font-weight: bold;
-        margin-bottom: 12px;
-        display: block;
-      }
-
-      .gsk-input-group {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 20px;
-      }
-
-      .gsk-input-container {
-        display: flex;
-        align-items: center;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 8px 10px;
-        width: 100%;
-      }
-
-      .gsk-input-container span {
-        color: gray;
-      }
-
-      .gsk-input-container input {
-        border: none;
-        outline: none;
-        width: 100%;
-        font-size: 14px;
-      }
-
-      #gskRange {
-        margin-top: 20px;
-      }
-
-      /* Custom Styling */
-      .noUi-connect {
-        background-color: #4caf50;
-      }
-
-      .noUi-handle {
-        border-color: #4caf50;
-        background-color: #fff;
-      }
     </style>
   </head>
   <body>
     <div class="gsk-container">
       <!-- Label -->
-      <label class="gsk-label">💰 Salary Range</label>
-
-      <!-- Input Group -->
-      <div class="gsk-input-group">
-        <div class="gsk-input-container">
-          <span>$</span>
-          <input
-            type="number"
-            id="gskMinInput"
-            min="1000"
-            max="100000"
-            step="1000"
-            value="10000"
-          />
-        </div>
-        <div class="gsk-input-container">
-          <span>$</span>
-          <input
-            type="number"
-            id="gskMaxInput"
-            min="1000"
-            max="100000"
-            step="1000"
-            value="90000"
-          />
-        </div>
-      </div>
-
-      <!-- Range Slider -->
-      <div id="gskRange"></div>
     </div>
 
     <!-- noUiSlider JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
 
-    <script>
-      const minInput = document.getElementById("gskMinInput");
-      const maxInput = document.getElementById("gskMaxInput");
-      const range = document.getElementById("gskRange");
-
-      // Initialize noUiSlider
-      noUiSlider.create(range, {
-        start: [10000, 90000],
-        connect: true,
-        step: 1000,
-        range: {
-          min: 1000,
-          max: 100000,
-        },
-      });
-
-      // Update input values on slider change
-      range.noUiSlider.on("update", (values) => {
-        minInput.value = Math.round(values[0]);
-        maxInput.value = Math.round(values[1]);
-      });
-
-      // Update slider when min input changes
-      minInput.addEventListener("change", () => {
-        let minValue = parseInt(minInput.value);
-        let maxValue = parseInt(maxInput.value);
-
-        if (minValue >= maxValue) {
-          minValue = maxValue - 1000;
-          minInput.value = minValue;
-        }
-
-        range.noUiSlider.set([minValue, null]);
-      });
-
-      // Update slider when max input changes
-      maxInput.addEventListener("change", () => {
-        let minValue = parseInt(minInput.value);
-        let maxValue = parseInt(maxInput.value);
-
-        if (maxValue <= minValue) {
-          maxValue = minValue + 1000;
-          maxInput.value = maxValue;
-        }
-
-        range.noUiSlider.set([null, maxValue]);
-      });
-    </script>
+    <script></script>
   </body>
 </html>
