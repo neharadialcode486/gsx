@@ -15,6 +15,12 @@ async function fetchProperties() {
         fetch(propertyTagsApiUrl),
       ]);
 
+    const propertiesHeaders = propertiesResponse.headers;
+
+    // Example: Get specific header value
+    const totalCount = propertiesHeaders.get("x-wp-total");
+    console.log("Total Properties:", totalCount);
+
     // Check if responses are okay
     if (
       !propertiesResponse.ok ||
@@ -62,7 +68,7 @@ async function fetchProperties() {
             console.warn(`Failed to load manager data for ID: ${managerId}`);
           }
         }
-
+        document.getElementById("total_properties").innerHTML = totalCount;
         // Return property with mapped details
         return {
           ...property,
