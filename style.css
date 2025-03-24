@@ -102,6 +102,7 @@ body {
   line-height: var(--e-global-typography-c166794-line-height);
   display: flex;
   gap: 10px;
+  padding-top: 10px;
 }
 .gsk_heading {
   font-size: var(--e-global-typography-1ef8208-font-size);
@@ -503,6 +504,13 @@ body {
   border-radius: 8px;
   cursor: pointer;
 }
+.gsk_mobile_filter_btn {
+  display: none;
+}
+.gsk_cross_icon,
+.gsk_overlay {
+  display: none;
+}
 /* MEDIA ==========================================================*/
 @media (max-width: 1230px) {
   .sgk_properties_card {
@@ -544,19 +552,69 @@ body {
   .gsk_heading {
     font-size: 30px;
   }
+  .sidebar_container {
+    min-width: 300px !important;
+    padding-top: 10px;
+  }
 }
 @media (max-width: 768px) {
-  .sidebar_container {
-    display: none;
-  }
   .sgk_properties_card {
     max-width: 49%;
   }
+  .gsk_mobile_filter_btn {
+    position: fixed;
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+    cursor: pointer;
+    background-color: var(--e-global-color-9b74273);
+    border-radius: 0px 0px 0px 0px;
+    padding: 16px 0px 16px 0px;
+    font-weight: var(--e-global-typography-accent-font-weight);
+    font-size: var(--e-global-typography-d557a35-font-size);
+    line-height: var(--e-global-typography-d557a35-line-height);
+    color: var(--e-global-color-cab9338);
+    text-align: center;
+    border: none;
+  }
+  .sidebar_container {
+    position: fixed;
+    left: -400px;
+    top: 0;
+    min-width: 300px !important;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: white;
+    z-index: 20;
+    padding: 40px 30px;
+    padding-top: 50px;
+    transition: all 0.3s ease-in-out;
+  }
+  .gsk_cross_icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+    cursor: pointer;
+  }
+  .gsk_overlay {
+    position: fixed;
+    display: none;
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+    opacity: 50%;
+    left: 0;
+    top: 0;
+    z-index: 11;
+  }
 }
 @media (max-width: 600px) {
-  .sidebar_container {
-    display: none;
-  }
   .sgk_properties_card {
     max-width: 100%;
   }
