@@ -6,8 +6,11 @@ const propertyTagsApiUrl =
   "http://16.171.233.34/index.php/wp-json/wp/v2/property-tag?_fields=id,name";
 
 async function fetchProperties() {
+  document.getElementById(
+    "gsk_property_list"
+  ).innerHTML = `<div class="gsk_loader_container"><div class="gsk_loader"></div></div>`;
+
   try {
-    // Fetch data from all APIs
     const [propertiesResponse, propertyTypesResponse, propertyTagsResponse] =
       await Promise.all([
         fetch(propertiesApiUrl),
@@ -16,12 +19,8 @@ async function fetchProperties() {
       ]);
 
     const propertiesHeaders = propertiesResponse.headers;
-
-    // Example: Get specific header value
     const totalCount = propertiesHeaders.get("x-wp-total");
-    console.log("Total Properties:", totalCount);
 
-    // Check if responses are okay
     if (
       !propertiesResponse.ok ||
       !propertyTypesResponse.ok ||
@@ -32,26 +31,20 @@ async function fetchProperties() {
       );
     }
 
-    // Parse JSON responses
     const properties = await propertiesResponse.json();
     const propertyTypes = await propertyTypesResponse.json();
     const propertyTags = await propertyTagsResponse.json();
-    console.log(properties);
 
-    // Map properties with property types, tags, and media details
     const matchedProperties = await Promise.all(
       properties.map(async (property) => {
-        // Match property type
         const propertyTypeDetails = propertyTypes.find(
           (type) => type.id === property.acf.property_type[0]
         );
 
-        // Match tags and get their names
         const tagDetails = propertyTags.find(
           (type) => type.id === property.acf.tags[0]
         );
 
-        // Fetch manager details dynamically
         const managerId = property.acf.manager[0]?.ID;
         let managerDetails = {
           name: "N/A",
@@ -65,12 +58,9 @@ async function fetchProperties() {
             const managerResponse = await fetch(managerApiUrl);
             const managerData = await managerResponse.json();
             managerDetails = managerData.acf;
-          } catch (error) {
-            console.warn(`Failed to load manager data for ID: ${managerId}`);
-          }
+          } catch (error) {}
         }
 
-        // Fetch media details dynamically
         const aboutImageId = property.featured_media || null;
         let mediaDetails = {
           id: null,
@@ -84,14 +74,11 @@ async function fetchProperties() {
             const mediaData = await mediaResponse.json();
             mediaDetails.source_url =
               mediaData.source_url || mediaDetails.source_url;
-          } catch (error) {
-            console.warn(`Failed to load media data for ID: ${aboutImageId}`);
-          }
+          } catch (error) {}
         }
 
         document.getElementById("total_properties").innerHTML = totalCount;
 
-        // Return property with mapped details
         return {
           ...property,
           property_type_details: propertyTypeDetails || { name: "Unknown" },
@@ -107,9 +94,16 @@ async function fetchProperties() {
     document.getElementById(
       "gsk_property_list"
     ).innerHTML = `<p>Failed to load properties.</p>`;
-    console.error("Error:", error);
   }
 }
+
+const loaderStyles = `
+
+`;
+
+const styleSheet = document.createElement("style");
+styleSheet.type = "text/css";
+document.head.appendChild(styleSheet);
 
 function displayProperties(properties) {
   const cardContainer = document.getElementById("gsk_property_list");
