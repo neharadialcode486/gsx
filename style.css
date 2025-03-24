@@ -393,7 +393,7 @@ body {
 }
 
 .gsk-option:hover {
-  background-color: var(--e-global-color-3a05ba6);
+  background-color: var(--e-global-color-primary);
   color: white;
 }
 
@@ -451,18 +451,18 @@ body {
 
 /* Custom Styling */
 .noUi-connect {
-  background-color: var(--e-global-color-3a05ba6) !important;
+  background-color: var(--e-global-color-primary) !important;
 }
 .noUi-horizontal {
-  height: 10px !important;
+  height: 7px !important;
 }
 .noUi-handle {
-  border-color: var(--e-global-color-3a05ba6) !important;
-  background-color: var(--e-global-color-3a05ba6) !important;
+  border-color: var(--e-global-color-primary) !important;
+  background-color: var(--e-global-color-primary) !important;
   border-radius: 50% !important;
   height: 15px !important;
   width: 15px !important;
-  margin-top: 2px;
+  margin-top: 1px;
   margin-right: 5px;
 }
 .noUi-touch-area {
