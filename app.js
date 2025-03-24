@@ -221,45 +221,6 @@ function displayProperties(properties) {
 // Load properties on page load
 fetchProperties();
 
-// CUSTOM SECLECT ===============================================================
-function initCustomSelect(selectId) {
-  const selectBox = document.getElementById(`${selectId}Box`);
-  const optionsContainer = document.getElementById(`${selectId}Options`);
-  const selectedOption = document.getElementById(`${selectId}Selected`);
-  const arrow = document.getElementById(`${selectId}Arrow`);
-
-  // Toggle dropdown
-  selectBox.addEventListener("click", () => {
-    optionsContainer.classList.toggle("gsk-show");
-    arrow.classList.toggle("gsk-rotate");
-  });
-
-  // Handle option click
-  document
-    .querySelectorAll(`#${selectId}Options .gsk-option`)
-    .forEach((option) => {
-      option.addEventListener("click", (e) => {
-        selectedOption.innerText = e.target.innerText;
-        optionsContainer.classList.remove("gsk-show");
-        arrow.classList.remove("gsk-rotate");
-      });
-    });
-
-  // Close dropdown when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!selectBox.contains(e.target)) {
-      optionsContainer.classList.remove("gsk-show");
-      arrow.classList.remove("gsk-rotate");
-    }
-  });
-}
-
-// Initialize all 4 selects
-initCustomSelect("gskLocation");
-initCustomSelect("gskPropertyType");
-initCustomSelect("gskSize");
-initCustomSelect("gskPrice");
-
 // RANGE ==============================
 const minInput = document.getElementById("gskMinInput");
 const maxInput = document.getElementById("gskMaxInput");
@@ -327,3 +288,73 @@ cross.addEventListener("click", function () {
   sidebar.style.left = "-400px";
   overlay.style.display = "none";
 });
+
+// CUSTOM SECLECT =====================================================================================================
+async function fetchSelectOptions() {
+  const apiUrls = {
+    gskPropertyType:
+      "http://16.171.233.34/index.php/wp-json/wp/v2/property-type?_fields=id,name",
+    gskLocation:
+      "http://16.171.233.34/index.php/wp-json/wp/v2/property-city?_fields=id,name",
+    gskSize:
+      "http://16.171.233.34/index.php/wp-json/wp/v2/property-bath?_fields=id,name",
+    gskPrice:
+      "http://16.171.233.34/index.php/wp-json/wp/v2/property-bed?_fields=id,name",
+  };
+
+  try {
+    const responses = await Promise.all(
+      Object.values(apiUrls).map((url) => fetch(url))
+    );
+
+    const data = await Promise.all(responses.map((res) => res.json()));
+
+    Object.keys(apiUrls).forEach((selectId, index) => {
+      populateSelectOptions(selectId, data[index]);
+    });
+  } catch (error) {
+    console.error("Error fetching select options:", error);
+  }
+}
+
+function populateSelectOptions(selectId, options) {
+  const optionsContainer = document.getElementById(`${selectId}Options`);
+  optionsContainer.innerHTML = options
+    .map(
+      (option) =>
+        `<div class="gsk-option" data-value="${option.id}">${option.name}</div>`
+    )
+    .join("");
+
+  initCustomSelect(selectId);
+}
+
+function initCustomSelect(selectId) {
+  const selectBox = document.getElementById(`${selectId}Box`);
+  const optionsContainer = document.getElementById(`${selectId}Options`);
+  const selectedOption = document.getElementById(`${selectId}Selected`);
+  const arrow = document.getElementById(`${selectId}Arrow`);
+
+  selectBox.addEventListener("click", () => {
+    optionsContainer.classList.toggle("gsk-show");
+    arrow.classList.toggle("gsk-rotate");
+  });
+
+  optionsContainer.addEventListener("click", (e) => {
+    if (e.target.classList.contains("gsk-option")) {
+      selectedOption.innerText = e.target.innerText;
+      selectedOption.dataset.value = e.target.dataset.value;
+      optionsContainer.classList.remove("gsk-show");
+      arrow.classList.remove("gsk-rotate");
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!selectBox.contains(e.target)) {
+      optionsContainer.classList.remove("gsk-show");
+      arrow.classList.remove("gsk-rotate");
+    }
+  });
+}
+
+fetchSelectOptions();
