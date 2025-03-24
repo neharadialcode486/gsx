@@ -35,6 +35,7 @@ async function fetchProperties() {
     const propertyTypes = await propertyTypesResponse.json();
     const propertyTags = await propertyTagsResponse.json();
 
+    console.log(properties, "properties");
     const matchedProperties = await Promise.all(
       properties.map(async (property) => {
         const propertyTypeDetails = propertyTypes.find(
@@ -96,10 +97,6 @@ async function fetchProperties() {
     ).innerHTML = `<p>Failed to load properties.</p>`;
   }
 }
-
-const loaderStyles = `
-
-`;
 
 const styleSheet = document.createElement("style");
 styleSheet.type = "text/css";
@@ -288,73 +285,3 @@ cross.addEventListener("click", function () {
   sidebar.style.left = "-400px";
   overlay.style.display = "none";
 });
-
-// CUSTOM SECLECT =====================================================================================================
-async function fetchSelectOptions() {
-  const apiUrls = {
-    gskPropertyType:
-      "http://16.171.233.34/index.php/wp-json/wp/v2/property-type?_fields=id,name",
-    gskLocation:
-      "http://16.171.233.34/index.php/wp-json/wp/v2/property-city?_fields=id,name",
-    gskSize:
-      "http://16.171.233.34/index.php/wp-json/wp/v2/property-bath?_fields=id,name",
-    gskPrice:
-      "http://16.171.233.34/index.php/wp-json/wp/v2/property-bed?_fields=id,name",
-  };
-
-  try {
-    const responses = await Promise.all(
-      Object.values(apiUrls).map((url) => fetch(url))
-    );
-
-    const data = await Promise.all(responses.map((res) => res.json()));
-
-    Object.keys(apiUrls).forEach((selectId, index) => {
-      populateSelectOptions(selectId, data[index]);
-    });
-  } catch (error) {
-    console.error("Error fetching select options:", error);
-  }
-}
-
-function populateSelectOptions(selectId, options) {
-  const optionsContainer = document.getElementById(`${selectId}Options`);
-  optionsContainer.innerHTML = options
-    .map(
-      (option) =>
-        `<div class="gsk-option" data-value="${option.id}">${option.name}</div>`
-    )
-    .join("");
-
-  initCustomSelect(selectId);
-}
-
-function initCustomSelect(selectId) {
-  const selectBox = document.getElementById(`${selectId}Box`);
-  const optionsContainer = document.getElementById(`${selectId}Options`);
-  const selectedOption = document.getElementById(`${selectId}Selected`);
-  const arrow = document.getElementById(`${selectId}Arrow`);
-
-  selectBox.addEventListener("click", () => {
-    optionsContainer.classList.toggle("gsk-show");
-    arrow.classList.toggle("gsk-rotate");
-  });
-
-  optionsContainer.addEventListener("click", (e) => {
-    if (e.target.classList.contains("gsk-option")) {
-      selectedOption.innerText = e.target.innerText;
-      selectedOption.dataset.value = e.target.dataset.value;
-      optionsContainer.classList.remove("gsk-show");
-      arrow.classList.remove("gsk-rotate");
-    }
-  });
-
-  document.addEventListener("click", (e) => {
-    if (!selectBox.contains(e.target)) {
-      optionsContainer.classList.remove("gsk-show");
-      arrow.classList.remove("gsk-rotate");
-    }
-  });
-}
-
-fetchSelectOptions();
