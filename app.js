@@ -218,54 +218,6 @@ function displayProperties(properties) {
 // Load properties on page load
 fetchProperties();
 
-// RANGE ==============================
-const minInput = document.getElementById("gskMinInput");
-const maxInput = document.getElementById("gskMaxInput");
-const range = document.getElementById("gskRange");
-
-// Initialize noUiSlider
-noUiSlider.create(range, {
-  start: [0, 2500],
-  connect: true,
-  step: 0,
-  range: {
-    min: 0,
-    max: 2500,
-  },
-});
-
-// Update input values on slider change
-range.noUiSlider.on("update", (values) => {
-  minInput.value = Math.round(values[0]);
-  maxInput.value = Math.round(values[1]);
-});
-
-// Update slider when min input changes
-minInput.addEventListener("change", () => {
-  let minValue = parseInt(minInput.value);
-  let maxValue = parseInt(maxInput.value);
-
-  if (minValue >= maxValue) {
-    minValue = maxValue - 1000;
-    minInput.value = minValue;
-  }
-
-  range.noUiSlider.set([minValue, null]);
-});
-
-// Update slider when max input changes
-maxInput.addEventListener("change", () => {
-  let minValue = parseInt(minInput.value);
-  let maxValue = parseInt(maxInput.value);
-
-  if (maxValue <= minValue) {
-    maxValue = minValue + 1000;
-    maxInput.value = maxValue;
-  }
-
-  range.noUiSlider.set([null, maxValue]);
-});
-
 // SIDEBAR =============================================
 
 const btn = document.getElementById("gsk_mobile_filter_btn");

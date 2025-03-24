@@ -37,12 +37,18 @@ const selects = {
   },
 };
 
+const minInput = document.getElementById("gskMinInput");
+const maxInput = document.getElementById("gskMaxInput");
+const range = document.getElementById("gskRange");
+
 let mainData = [];
 let selectedOptions = {
   location: null,
   propertyType: null,
   bedrooms: null,
   bathrooms: null,
+  priceFrom: 0,
+  priceTo: 2500,
 };
 
 let optionsData = {
@@ -50,6 +56,48 @@ let optionsData = {
   bedrooms: [],
   bathrooms: [],
 };
+
+noUiSlider.create(range, {
+  start: [0, 2500],
+  connect: true,
+  step: 1,
+  range: {
+    min: 0,
+    max: 2500,
+  },
+});
+
+range.noUiSlider.on("update", (values) => {
+  minInput.value = Math.round(values[0]);
+  maxInput.value = Math.round(values[1]);
+  updatePriceRange();
+});
+
+minInput.addEventListener("change", () => {
+  let minValue = parseInt(minInput.value);
+  let maxValue = parseInt(maxInput.value);
+  if (minValue >= maxValue) {
+    minValue = maxValue - 100;
+  }
+  range.noUiSlider.set([minValue, null]);
+  updatePriceRange();
+});
+
+maxInput.addEventListener("change", () => {
+  let minValue = parseInt(minInput.value);
+  let maxValue = parseInt(maxInput.value);
+  if (maxValue <= minValue) {
+    maxValue = minValue + 100;
+  }
+  range.noUiSlider.set([null, maxValue]);
+  updatePriceRange();
+});
+
+function updatePriceRange() {
+  selectedOptions.priceFrom = parseInt(minInput.value);
+  selectedOptions.priceTo = parseInt(maxInput.value);
+  applyFilters();
+}
 
 async function fetchAndPopulateOptions() {
   const urls = Object.entries(API_URLS);
@@ -92,6 +140,7 @@ function initOptionClick(selectId) {
 }
 
 function applyFilters() {
+  console.log(mainData, "mainData");
   let filteredData = mainData;
   if (selectedOptions.location) {
     filteredData = filteredData.filter(
@@ -113,7 +162,22 @@ function applyFilters() {
       item["property-bath"].includes(parseInt(selectedOptions.bathrooms))
     );
   }
-  console.log(filteredData, "filteredDatafilteredData");
+  if (
+    selectedOptions.priceFrom !== undefined &&
+    selectedOptions.priceTo !== undefined
+  ) {
+    filteredData = filteredData.filter((item) => {
+      if (item.acf.room && item.acf.room.length > 0) {
+        const roomPrice = item.acf.room[0].room_price;
+        return (
+          roomPrice >= selectedOptions.priceFrom &&
+          roomPrice <= selectedOptions.priceTo
+        );
+      }
+      return false;
+    });
+  }
+  console.log(filteredData, "Filtered Data with Price Range and Options");
   populateFilteredOptions("propertyType", filteredData, "property-type");
   populateFilteredOptions("bedrooms", filteredData, "property-bed");
   populateFilteredOptions("bathrooms", filteredData, "property-bath");
