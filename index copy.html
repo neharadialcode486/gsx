@@ -61,28 +61,111 @@
         <div class="gsk-form-container">
           <!-- Location Select -->
           <div class="gsk-form-group">
-            <label class="gsk-label" for="city">Location</label>
-            <select name="city" class="my_gsk_select">
-              <option value="">Select City</option>
-            </select>
+            <label class="gsk-label" for="gskLocationSelect">Location</label>
+            <div class="gsk-custom-select" id="gskLocationSelect">
+              <div class="gsk-select-box" id="gskLocationBox">
+                <span id="gskLocationSelected">Select City</span>
+                <div class="gsk-arrow" id="gskLocationArrow">
+                  <svg
+                    width="10"
+                    height="5"
+                    viewBox="0 0 10 5"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M0 0L5 5L10 0H0Z" fill="black" />
+                  </svg>
+                </div>
+              </div>
+              <div class="gsk-options-container" id="gskLocationOptions"></div>
+            </div>
           </div>
+
           <div class="gsk-form-group">
-            <label class="gsk-label" for="type">Property Type</label>
-            <select name="type" class="my_gsk_select">
-              <option value="">Select Type</option>
-            </select>
+            <label class="gsk-label" for="gskPropertyTypeSelect"
+              >Property Type</label
+            >
+            <div class="gsk-custom-select" id="gskPropertyTypeSelect">
+              <div class="gsk-select-box" id="gskPropertyTypeBox">
+                <span id="gskPropertyTypeSelected">Select Type</span>
+                <div class="gsk-arrow" id="gskPropertyTypeArrow">
+                  <svg
+                    width="10"
+                    height="5"
+                    viewBox="0 0 10 5"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M0 0L5 5L10 0H0Z" fill="black" />
+                  </svg>
+                </div>
+              </div>
+              <div
+                class="gsk-options-container"
+                id="gskPropertyTypeOptions"
+              ></div>
+            </div>
           </div>
+
           <div class="gsk-form-group">
-            <label class="gsk-label" for="bed">Bedrooms</label>
-            <select name="bed" class="my_gsk_select">
-              <option value="">Select Bedrooms</option>
-            </select>
+            <label class="gsk-label" for="gskSizeSelect">Bedrooms</label>
+            <div class="gsk-custom-select" id="gskSizeSelect">
+              <div class="gsk-select-box" id="gskSizeBox">
+                <span id="gskSizeSelected">Select Bedrooms</span>
+                <div class="gsk-arrow" id="gskSizeArrow">
+                  <svg
+                    width="10"
+                    height="5"
+                    viewBox="0 0 10 5"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M0 0L5 5L10 0H0Z" fill="black" />
+                  </svg>
+                </div>
+              </div>
+              <div class="gsk-options-container" id="gskSizeOptions">
+                <div class="gsk-option" data-value="500sqft">500 sqft</div>
+                <div class="gsk-option" data-value="1000sqft">1000 sqft</div>
+                <div class="gsk-option" data-value="1500sqft">1500 sqft</div>
+                <div class="gsk-option" data-value="2000sqft">2000 sqft</div>
+              </div>
+            </div>
           </div>
+
+          <!-- Price Range Select -->
           <div class="gsk-form-group">
-            <label class="gsk-label" for="bath">Bathrooms</label>
-            <select name="bath" class="my_gsk_select">
-              <option value="">Select Bathrooms</option>
-            </select>
+            <label class="gsk-label" for="gskPriceSelect">Bathrooms</label>
+            <div class="gsk-custom-select" id="gskPriceSelect">
+              <div class="gsk-select-box" id="gskPriceBox">
+                <span id="gskPriceSelected">Select Bathrooms</span>
+                <div class="gsk-arrow" id="gskPriceArrow">
+                  <svg
+                    width="10"
+                    height="5"
+                    viewBox="0 0 10 5"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M0 0L5 5L10 0H0Z" fill="black" />
+                  </svg>
+                </div>
+              </div>
+              <div class="gsk-options-container" id="gskPriceOptions">
+                <div class="gsk-option" data-value="under50k">
+                  Under $50,000
+                </div>
+                <div class="gsk-option" data-value="50kto100k">
+                  $50,000 - $100,000
+                </div>
+                <div class="gsk-option" data-value="100kto200k">
+                  $100,000 - $200,000
+                </div>
+                <div class="gsk-option" data-value="above200k">
+                  Above $200,000
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <!-- RANGE -->
@@ -115,7 +198,7 @@
         </div>
 
         <div class="gsk_btn_container">
-          <!-- <button class="gsk_red_btn" id="submit-btn">
+          <button class="gsk_red_btn" id="filter_btn">
             <svg
               width="20"
               height="21"
@@ -132,8 +215,8 @@
               ></path>
             </svg>
             Search Property
-          </button> -->
-          <button class="gsk_clear_btn" id="reset-btn">
+          </button>
+          <button class="gsk_clear_btn">
             <svg
               width="20"
               height="20"
@@ -167,14 +250,14 @@
                 </linearGradient>
               </defs>
             </svg>
-            Reset
+            Apply Now
           </button>
         </div>
       </div>
       <div style="width: 100%">
         <div class="gsk_route">
           <span> Homepage </span>
-          / <span class="gsk_text_blue"> Properties </span>
+          / <span> Properties </span>
         </div>
         <h2 class="gsk_heading">Property for Rent</h2>
 
@@ -195,6 +278,6 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
 
-    <script src="./main.js"></script>
+    <script src="./app.js"></script>
   </body>
 </html>

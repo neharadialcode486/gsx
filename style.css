@@ -90,8 +90,10 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
 .gsk_container {
   max-width: 1600px;
+  font-family: "Montserrat", Sans-Serif;
   margin: auto;
   padding: 0 20px;
   display: flex;
@@ -117,11 +119,14 @@ body {
   background-color: var(--e-global-color-accent);
   font-size: 17px;
   font-weight: var(--e-global-typography-fe57479-font-weight);
-  color: var(--e-global-color-cab9338);
+  color: var(--e-global-color-cab9338) !important;
   border-radius: 8px 8px 8px 8px;
   padding: 14px 24px 14px 24px;
 }
 .gsk_properties {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   color: var(--e-global-color-text);
   font-weight: var(--e-global-typography-f81d4b8-font-weight);
   font-style: var(--e-global-typography-f81d4b8-font-style);
@@ -132,14 +137,13 @@ body {
 }
 .gsk_button_container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 35px;
 }
 .sgk_properties_card {
   display: flex;
-  max-width: 1170px;
-  margin: auto;
   border-radius: 22px;
   overflow: hidden;
   transition: all 300ms ease-in-out;
@@ -266,7 +270,7 @@ body {
   align-items: center;
   gap: 5px;
   text-decoration: none;
-  color: var(--e-global-color-cab9338);
+  color: var(--e-global-color-cab9338) !important;
   border-radius: 8px 8px 8px 8px;
 }
 .gsk_profile_btn {
@@ -323,7 +327,8 @@ body {
 }
 
 .gsk-form-group {
-  position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
@@ -337,11 +342,14 @@ body {
   display: inline-block;
 }
 
-.gsk-custom-select {
+.my_gsk_select {
+  width: 100%;
+  border: 1px solid #666;
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s;
+  outline-color: var(--e-global-color-primary);
   position: relative;
-}
-
-.gsk-select-box {
   font-family: var(--e-global-typography-f81d4b8-font-family), Sans-serif;
   font-size: var(--e-global-typography-f81d4b8-font-size);
   font-weight: var(--e-global-typography-f81d4b8-font-weight);
@@ -355,46 +363,15 @@ body {
   border-color: #ced4da;
   border-radius: 6px 6px 6px 6px;
   -webkit-appearance: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 5" fill="black"><polygon points="0,0 10,0 5,5" /></svg>')
+    no-repeat right 1rem center;
+  background-size: 10px 5px;
+  padding-right: 2rem;
 }
 
-.gsk-select-box span {
-  font-size: 16px;
-  color: #333;
-}
-
-.gsk-arrow {
-  font-size: 14px;
-  transition: transform 0.2s ease-in-out;
-}
-
-.gsk-options-container {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background-color: #fff;
-  border: 1px solid #ced4da;
-  border-top: none;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: none;
-  z-index: 10;
-  overflow: hidden;
-}
-
-.gsk-option {
-  padding: 7px 15px;
-  cursor: pointer;
-}
-
-.gsk-option:hover {
-  background-color: var(--e-global-color-primary);
-  color: white;
+.my_gsk_select:focus,
+.my_gsk_select:focus-within {
+  outline-color: var(--e-global-color-primary);
 }
 
 .gsk-show {
@@ -474,37 +451,37 @@ body {
   display: none !important;
 }
 .gsk_red_btn {
-  font-family: "Inter", Sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.2rem;
-  color: var(--e-global-color-cab9338);
-  background-color: var(--e-global-color-9b74273);
-  border-style: none;
-  padding: 12px 14px 12px 14px;
-  margin: 0px 0px 0px 0px;
-  border-radius: 8px 8px 8px 8px;
-  display: flex;
-  gap: 5px;
-  align-items: center;
-  cursor: pointer;
+  font-family: "Inter", Sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 1.2rem !important;
+  color: var(--e-global-color-cab9338) !important;
+  background-color: var(--e-global-color-9b74273) !important;
+  border-style: none !important;
+  padding: 12px 14px 12px 14px !important;
+  margin: 0px 0px 0px 0px !important;
+  border-radius: 8px 8px 8px 8px !important;
+  display: flex !important;
+  gap: 5px !important;
+  align-items: center !important;
+  cursor: pointer !important;
 }
 .gsk_clear_btn {
-  font-family: "Inter", Sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.2rem;
-  color: var(--e-global-color-9b74273);
-  background-color: var(--e-global-color-cab9338);
-  border-style: solid;
-  border-width: 1px 1px 1px 1px;
-  border-color: var(--e-global-color-9b74273);
-  padding: 12px 14px 12px 14px;
-  display: flex;
-  gap: 5px;
-  align-items: center;
-  border-radius: 8px;
-  cursor: pointer;
+  font-family: "Inter", Sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1.2rem !important;
+  color: var(--e-global-color-9b74273) !important;
+  background-color: var(--e-global-color-cab9338) !important;
+  border-style: solid !important;
+  border-width: 1px 1px 1px 1px !important;
+  border-color: var(--e-global-color-9b74273) !important;
+  padding: 12px 14px 12px 14px !important;
+  display: flex !important;
+  gap: 5px !important;
+  align-items: center !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
 }
 .gsk_mobile_filter_btn {
   display: none;
@@ -523,7 +500,16 @@ body {
   width: 40px;
   height: 40px;
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
+  border-top: 4px solid var(--e-global-color-primary);
+  border-radius: 50%;
+  animation: gsk_spin 1s linear infinite;
+}
+
+.gsk_loader_small {
+  width: 10px;
+  height: 10px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid var(--e-global-color-primary);
   border-radius: 50%;
   animation: gsk_spin 1s linear infinite;
 }
@@ -542,7 +528,6 @@ body {
 @media (max-width: 1230px) {
   .sgk_properties_card {
     flex-direction: column;
-    max-width: 365px;
   }
   .gsk_property_card_image {
     max-width: 100%;
@@ -568,11 +553,6 @@ body {
   }
 }
 @media (max-width: 1100px) {
-  .sgk_properties_card {
-    flex-direction: column;
-    max-width: 100%;
-  }
-
   #gsk_property_list {
     flex-wrap: wrap;
   }
@@ -584,9 +564,6 @@ body {
   }
 }
 @media (max-width: 768px) {
-  .sgk_properties_card {
-    max-width: 49%;
-  }
   .gsk_mobile_filter_btn {
     position: fixed;
     display: flex;
@@ -640,8 +617,17 @@ body {
     z-index: 11;
   }
 }
-@media (max-width: 600px) {
-  .sgk_properties_card {
-    max-width: 100%;
-  }
+
+.gsk_error_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #e2e2e2;
+  border-radius: 8px;
+  font-weight: var(--e-global-typography-1ef8208-font-weight);
+}
+
+.gsk_text_blue {
+  color: var(--e-global-color-primary);
 }
